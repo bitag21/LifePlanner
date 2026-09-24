@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LifePlanner</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #333;
+        }
+
+        .navbar {
+            background: #ffffff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            min-height: 150px;
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #777;
+        }
+
+        .motivation {
+            margin-top: 25px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .motivation h2 {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">🌱 LifePlanner</div>
+    <div>Dashboard</div>
+</nav>
+
+<div class="container">
+
+    <div class="welcome">
+        <h1>Welcome to LifePlanner 👋</h1>
+        <p>Plan your days, track your goals, and build the life you want.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>✅ Tasks</h2>
+            <p>0 tasks for today</p>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Goals</h2>
+            <p>Start working toward your goals.</p>
+        </div>
+
+        <div class="card">
+            <h2>📅 Calendar</h2>
+            <p>Plan your upcoming days.</p>
+        </div>
+
+        <div class="card">
+            <h2>📝 Notes</h2>
+            <p>Keep your important thoughts here.</p>
+        </div>
+
+        <div class="card">
+            <h2>📊 Progress</h2>
+            <p>Track your personal progress.</p>
+        </div>
+
+        <div class="card">
+            <h2>🖼️ Vision Board</h2>
+            <p>Keep your dreams and inspiration in one place.</p>
+        </div>
+
+    </div>
+
+    <div class="motivation">
+        <h2>💡 Today's Motivation</h2>
+        <p>"Small steps every day lead to big changes."</p>
+    </div>
+
+</div>
+
+</body>
+</html>
