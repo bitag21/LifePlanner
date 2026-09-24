@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifePlanner - Goals</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .add-goal {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .goal {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .goal h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .goal p {
+            color: #666;
+        }
+
+        .progress-container {
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            background-color: #4CAF50;
+            height: 100%;
+        }
+
+        .delete {
+            color: #d9534f;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .progress-form {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎯 My Goals</h1>
+
+    <div class="add-goal">
+
+        <h2>Add a New Goal</h2>
+
+        <form action="/goals/add" method="post">
+
+            <input
+                    type="text"
+                    name="title"
+                    placeholder="Goal title"
+                    required>
+
+            <textarea
+                    name="description"
+                    placeholder="Describe your goal"
+                    rows="3"></textarea>
+
+            <button type="submit">Add Goal</button>
+
+        </form>
+
+    </div>
+
+
+    <div th:each="goal : ${goals}" class="goal">
+
+        <h2 th:text="${goal.title}">Goal Title</h2>
+
+        <p th:text="${goal.description}">Goal description</p>
+
+        <strong>
+            Progress: <span th:text="${goal.progress}">0</span>%
+        </strong>
+
+        <div class="progress-container">
+
+            <div
+                    class="progress-bar"
+                    th:style="'width:' + ${goal.progress} + '%'">
+            </div>
+
+        </div>
+
+
+        <form
+                th:action="@{'/goals/progress/' + ${goal.id}}"
+                method="post"
+                class="progress-form">
+
+            <input
+                    type="number"
+                    name="progress"
+                    min="0"
+                    max="100"
+                    th:value="${goal.progress}"
+                    required>
+
+            <button type="submit">
+                Update Progress
+            </button>
+
+        </form>
+
+
+        <a
+                th:href="@{'/goals/delete/' + ${goal.id}}"
+                class="delete"
+                onclick="return confirm('Delete this goal?');">
+
+            🗑️ Delete Goal
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
