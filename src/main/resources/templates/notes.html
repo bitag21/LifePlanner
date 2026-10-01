@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LifePlanner - Notes</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .add-note {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .add-note h2 {
+            margin-bottom: 15px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .note {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .note h2 {
+            margin-bottom: 10px;
+        }
+
+        .content {
+            color: #666;
+            white-space: pre-wrap;
+            margin-bottom: 15px;
+        }
+
+        .delete {
+            color: #d9534f;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📝 My Notes</h1>
+
+    <div class="add-note">
+
+        <h2>Create a New Note</h2>
+
+        <form action="/notes/add" method="post">
+
+            <input
+                    type="text"
+                    name="title"
+                    placeholder="Note title"
+                    required>
+
+            <textarea
+                    name="content"
+                    placeholder="Write your note here..."
+                    rows="6"
+                    required></textarea>
+
+            <button type="submit">
+                Save Note
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div th:each="note : ${notes}" class="note">
+
+        <h2 th:text="${note.title}">
+            Note Title
+        </h2>
+
+        <p
+                class="content"
+                th:text="${note.content}">
+            Note content
+        </p>
+
+        <a
+                th:href="@{'/notes/delete/' + ${note.id}}"
+                class="delete"
+                onclick="return confirm('Delete this note?');">
+
+            🗑️ Delete Note
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
