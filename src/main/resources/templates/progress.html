@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress - LifePlanner</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #4caf50;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+        }
+
+        .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            background: #4caf50;
+            height: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="/" class="back">← Back to Dashboard</a>
+
+    <h1>📊 My Progress</h1>
+
+    <div class="stats">
+
+        <div class="card">
+            <h2>✅ Completed Tasks</h2>
+            <div class="number"
+                 th:text="${completedTasks + ' / ' + totalTasks}">
+                0 / 0
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Total Goals</h2>
+            <div class="number"
+                 th:text="${totalGoals}">
+                0
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📈 Average Goal Progress</h2>
+
+            <div class="number"
+                 th:text="${#numbers.formatDecimal(averageGoalProgress, 1, 0) + '%'}">
+                0%
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill"
+                     th:style="'width:' + ${averageGoalProgress} + '%'">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
