@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Board - LifePlanner</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .vision-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .vision-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .vision-content {
+            padding: 20px;
+        }
+
+        .vision-content h2 {
+            margin-top: 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            margin: 15px 0;
+        }
+
+        .delete {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #4caf50;
+        }
+
+        @media (max-width: 800px) {
+            .vision-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="/" class="back">← Back to Dashboard</a>
+
+    <h1>🖼️ My Vision Board</h1>
+
+    <div class="form-box">
+
+        <h2>Add a Vision</h2>
+
+        <form action="/vision-board/add" method="post">
+
+            <input
+                    type="text"
+                    name="title"
+                    placeholder="Vision title"
+                    required>
+
+            <textarea
+                    name="description"
+                    placeholder="Describe your vision"></textarea>
+
+            <input
+                    type="text"
+                    name="quote"
+                    placeholder="Motivational quote">
+
+            <input
+                    type="url"
+                    name="imageUrl"
+                    placeholder="Image URL">
+
+            <button type="submit">➕ Add Vision</button>
+
+        </form>
+
+    </div>
+
+    <div class="vision-grid">
+
+        <div class="vision-card" th:each="item : ${visionItems}">
+
+            <img
+                    th:if="${item.imageUrl != null and !item.imageUrl.isEmpty()}"
+                    th:src="${item.imageUrl}"
+                    alt="Vision image">
+
+            <div class="vision-content">
+
+                <h2 th:text="${item.title}">Vision Title</h2>
+
+                <p th:text="${item.description}">
+                    Vision description
+                </p>
+
+                <p class="quote" th:if="${item.quote != null and !item.quote.isEmpty()}">
+                    "<span th:text="${item.quote}"></span>"
+                </p>
+
+                <a
+                        th:href="@{/vision-board/delete/{id}(id=${item.id})}"
+                        class="delete">
+                    Delete
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
