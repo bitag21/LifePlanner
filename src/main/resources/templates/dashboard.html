@@ -117,55 +117,156 @@
 </nav>
 
 <div class="container">
-
     <div class="welcome">
         <h1>Welcome to LifePlanner 👋</h1>
         <p>Plan your days, track your goals, and build the life you want.</p>
     </div>
-
     <div class="cards">
-
         <a href="/tasks" class="card">
             <h2>✅ Tasks</h2>
             <p>Manage your daily tasks and to-do list.</p>
         </a>
-
         <a href="/goals" class="card">
             <h2>🎯 Goals</h2>
             <p>Create goals and track your progress.</p>
         </a>
-
         <a href="/calendar" class="card">
             <h2>📅 Calendar</h2>
             <p>Plan your upcoming days.</p>
         </a>
-
         <a href="/notes" class="card">
             <h2>📝 Notes</h2>
             <p>Keep your important thoughts here.</p>
         </a>
-
         <a href="/progress" class="card">
             <h2>📊 Progress</h2>
             <p>Track your daily progress and achievements.</p>
         </a>
-
         <a href="/vision-board" class="card">
             <h2>🖼️ Vision Board</h2>
             <p>Keep your dreams and inspiration in one place.</p>
         </a>
-
         <a href="/reminders" class="card">
             <h2>⏰ Reminders</h2>
             <p>Keep track of important reminders.</p>
         </a>
-
     </div>
 
-    <div class="motivation">
+   <div class="motivation">
         <h2>💡 Today's Motivation</h2>
-        <p>"Small steps every day lead to big changes."</p>
-    </div>
+        <p id="dailyMotivation"></p>
+   </div>
+    <script>
+        const motivations = [
+            "Small steps every day lead to big changes.",
+            "Progress, not perfection.",
+            "Believe in yourself and keep going.",
+            "You don't have to be perfect. Just keep improving.",
+            "Your future self will thank you for what you do today.",
+            "Every day is a new opportunity to grow.",
+            "Don't stop when you're tired. Stop when you're done.",
+            "A little progress each day adds up to big results.",
+            "You are capable of more than you think.",
+            "Start where you are. Use what you have. Do what you can.",
+            "Your only limit is the one you set for yourself.",
+            "Keep going. You are closer than you think.",
+            "Consistency beats intensity when it comes to long-term growth.",
+            "One day at a time.",
+            "Make today count.",
+            "You can do hard things.",
+            "Focus on what you can control.",
+            "Every expert was once a beginner.",
+            "Don't compare your beginning to someone else's middle.",
+            "Your effort matters, even when you can't see the results yet.",
+            "Keep learning. Keep growing. Keep moving.",
+            "The best time to start is now.",
+            "You don't need motivation to begin. Just begin.",
+            "Trust the process.",
+            "Your dreams are worth the effort.",
+            "Difficult roads often lead to meaningful destinations.",
+            "Be proud of how far you've come.",
+            "Keep showing up for yourself.",
+            "A slow step forward is still a step forward.",
+            "You are building something that matters.",
+            "Choose progress over excuses.",
+            "Don't give up on a goal because it takes time.",
+            "Your future is created by what you do today.",
+            "Make yourself proud.",
+            "Small actions create big changes.",
+            "Keep your eyes on the goal and your feet moving.",
+            "You have more strength than you realize.",
+            "Learn from yesterday and build today.",
+            "Success starts with taking the first step.",
+            "Be patient with yourself.",
+            "You are allowed to start again.",
+            "Keep going, even if your progress feels small.",
+            "Your hard work will add up.",
+            "Focus on becoming better, not being perfect.",
+            "One good decision can change your whole day.",
+            "You can always take the next step.",
+            "Don't let fear decide your future.",
+            "Your goals deserve your attention.",
+            "Keep believing in the person you are becoming.",
+            "You don't need to have everything figured out.",
+            "Start small and build from there.",
+            "Your journey is your own.",
+            "Keep working quietly and let your progress speak.",
+            "Every challenge is an opportunity to learn.",
+            "You can begin again at any moment.",
+            "Your potential grows when you keep trying.",
+            "Don't underestimate what you can accomplish with consistency.",
+            "Today is another chance to move forward.",
+            "Give yourself permission to grow.",
+            "You are stronger because you kept going.",
+            "Make progress your priority.",
+            "Your goals are built one action at a time.",
+            "Keep moving forward, even slowly.",
+            "You don't need a perfect plan to make progress.",
+            "Believe that your effort is worth it.",
+            "A better future starts with today's choices.",
+            "Keep learning from every experience.",
+            "You are becoming better with every attempt.",
+            "Don't quit because today was difficult.",
+            "Tomorrow can be different because of what you do today.",
+            "Your journey doesn't have to look like anyone else's.",
+            "Take the next step, not all the steps at once.",
+            "You are capable of learning anything with enough patience.",
+            "Keep your goals bigger than your excuses.",
+            "Your effort today is an investment in tomorrow.",
+            "Celebrate small victories.",
+            "Keep going when nobody is watching.",
+            "You can do more than you think.",
+            "Give yourself time to grow.",
+            "Every mistake can teach you something.",
+            "Keep your mind focused on what matters.",
+            "You are not behind. You are on your own journey.",
+            "The work you do today creates tomorrow's opportunities.",
+            "Keep trying until you find what works.",
+            "Your next chapter can be better than your last.",
+            "Don't wait for the perfect moment.",
+            "Start with what you have.",
+            "Your consistency will take you places motivation cannot.",
+            "Keep building your future one day at a time.",
+            "You have already overcome things you once thought were impossible.",
+            "Be patient. Good things take time.",
+            "Focus on the next small win.",
+            "Your goals are possible when you keep working toward them.",
+            "Keep going. Your story is still being written.",
+            "You don't have to see the whole path to take the next step.",
+            "Choose to keep moving forward.",
+            "Your effort is never wasted when you are learning.",
+            "Make today a day you will be proud of.",
+            "Keep believing, keep learning, and keep moving.",
+            "You are closer to your goals every time you try.",
+            "The person you want to become starts with what you do today."
+        ];
+        const today = new Date();
+        const dayNumber = Math.floor(
+            today.getTime() / (1000 * 60 * 60 * 24)
+        );
+        const motivationIndex = dayNumber % motivations.length;
+        document.getElementById("dailyMotivation").textContent = '"' + motivations[motivationIndex] + '"';
+    </script>
 
 </div>
 
