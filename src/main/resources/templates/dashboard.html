@@ -123,12 +123,14 @@
     </div>
     <div class="cards">
         <a href="/tasks" class="card">
-            <h2>✅ Tasks</h2>
-            <p>Manage your daily tasks and to-do list.</p>
+            <h2>📋 Tasks</h2>
+            <p>Manage your daily tasks.</p>
+            <p><strong th:text="${completedTasks}">0</strong> completed out of <strong th:text="${totalTasks}">0</strong></p>
         </a>
         <a href="/goals" class="card">
             <h2>🎯 Goals</h2>
-            <p>Create goals and track your progress.</p>
+            <p>Track your goals and progress.</p>
+            <p><strong th:text="${#numbers.formatDecimal(averageGoalProgress, 1, 0)}">0</strong>% average progress</p>
         </a>
         <a href="/calendar" class="card">
             <h2>📅 Calendar</h2>
@@ -149,6 +151,7 @@
         <a href="/reminders" class="card">
             <h2>⏰ Reminders</h2>
             <p>Keep track of important reminders.</p>
+            <p><strong th:text="${totalReminders}">0</strong> reminder(s)</p>
         </a>
     </div>
 
