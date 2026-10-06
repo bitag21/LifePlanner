@@ -118,9 +118,15 @@
 
 <div class="container">
     <div class="welcome">
-        <h1>Welcome to LifePlanner 👋</h1>
+        <h1 th:if="${user != null}">
+            Welcome, <span th:text="${user.username}">User</span> 👋
+        </h1>
+        <h1 th:unless="${user != null}">
+            Welcome to LifePlanner 👋
+        </h1>
         <p>Plan your days, track your goals, and build the life you want.</p>
     </div>
+    <a href="/logout" class="logout-btn">Logout</a>
     <div class="cards">
         <a href="/tasks" class="card">
             <h2>📋 Tasks</h2>

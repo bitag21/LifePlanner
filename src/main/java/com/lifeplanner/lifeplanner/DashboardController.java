@@ -1,5 +1,6 @@
 package com.lifeplanner.lifeplanner;
 
+import jakarta.servlet.http.HttpSession;
 import com.lifeplanner.lifeplanner.repository.GoalRepository;
 import com.lifeplanner.lifeplanner.repository.ReminderRepository;
 import com.lifeplanner.lifeplanner.repository.TaskRepository;
@@ -25,8 +26,13 @@ public class DashboardController {
     }
 
     @GetMapping("/")
-    public String dashboard(Model model) {
+    public String dashboard(Model model, HttpSession session) {
 
+        if (session.getAttribute("user") == null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("user", session.getAttribute("user"));
         long totalTasks = taskRepository.count();
 
         long completedTasks = taskRepository.findAll()
