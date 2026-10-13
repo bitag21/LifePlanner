@@ -33,13 +33,13 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
         return "redirect:/tasks";
     }
 
-    @GetMapping("/complete/{id}")
+    @PostMapping("/complete/{id}")
     public String completeTask(@PathVariable Long id) {
 
         Task task = taskRepository.findById(id).orElse(null);

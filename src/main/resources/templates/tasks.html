@@ -137,14 +137,16 @@
 
         <div class="actions">
 
-            <a th:href="@{/tasks/complete/{id}(id=${task.id})}">
-                <span th:if="${!task.completed}">✓</span>
-                <span th:if="${task.completed}">↩</span>
-            </a>
+            <form th:action="@{/tasks/complete/{id}(id=${task.id})}" method="post">
+                <button type="submit">
+                    <span th:if="${!task.completed}">✓</span>
+                    <span th:if="${task.completed}">↩</span>
+                </button>
+            </form>
 
-            <a th:href="@{/tasks/delete/{id}(id=${task.id})}">
-                🗑
-            </a>
+            <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post">
+                <button type="submit">🗑</button>
+            </form>
 
         </div>
 
